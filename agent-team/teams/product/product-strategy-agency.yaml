@@ -1,0 +1,27 @@
+id: product-strategy-agency
+name: Product Strategy Agency
+description: 产品机会发现、用户反馈综合、趋势研究、sprint 优先级和行为设计团队。
+use_when:
+  - 产品机会发现
+  - 用户反馈分析
+  - 产品路线图
+  - Sprint 优先级
+  - 激活和留存设计
+members:
+  lead: product-manager
+  contributors:
+    - product-trend-researcher
+    - product-feedback-synthesizer
+    - product-sprint-prioritizer
+    - product-behavioral-nudge-engine
+    - ux-researcher
+    - analytics-reporter
+default_workflows:
+  - product-discovery-and-prioritization
+deliverables:
+  - 产品机会
+  - 用户反馈洞察
+  - 趋势和市场假设
+  - sprint 优先级
+  - 行为设计和指标
+

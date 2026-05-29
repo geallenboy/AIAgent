@@ -1,0 +1,81 @@
+name: full-stack-product-pipeline
+description: 组织完整 agency 从产品想法推进到 UX、前后端、安全、测试和交付计划。
+team: full-stack-agency
+inputs:
+  - name: idea
+    required: true
+  - name: constraints
+    required: false
+  - name: current_project_context
+    required: false
+steps:
+  - id: route_agency
+    employee: agency-orchestrator
+    skill: agency-orchestration
+    task: "判断这个产品任务需要哪些 division、员工和交付物：{{idea}}\n约束：{{constraints}}\n项目上下文：{{current_project_context}}"
+    output: agency_route
+  - id: product_spec
+    employee: product-manager
+    skill: requirement-analysis
+    depends_on:
+      - route_agency
+    task: "基于路由方案输出产品目标、MVP 范围和验收标准：{{agency_route}}\n原始想法：{{idea}}"
+    output: product_spec
+  - id: user_research
+    employee: ux-researcher
+    skill: ux-design
+    depends_on:
+      - product_spec
+    task: "基于产品规格输出用户假设、核心任务和验证实验：{{product_spec}}"
+    output: user_research
+  - id: interface_design
+    employee: ui-designer
+    skill: ux-design
+    depends_on:
+      - product_spec
+      - user_research
+    task: "设计页面结构、关键状态和可用性风险：{{product_spec}}\n{{user_research}}"
+    output: interface_design
+  - id: backend_design
+    employee: backend-architect
+    skill: backend-api-design
+    depends_on:
+      - product_spec
+      - interface_design
+    task: "设计数据模型、API、权限边界和后端风险：{{product_spec}}\n{{interface_design}}"
+    output: backend_design
+  - id: frontend_plan
+    employee: frontend-developer
+    skill: frontend-implementation
+    depends_on:
+      - interface_design
+      - backend_design
+    task: "基于界面和后端方案输出前端页面、组件、状态和验证路径：{{interface_design}}\n{{backend_design}}"
+    output: frontend_plan
+  - id: security_baseline
+    employee: security-engineer
+    skill: security-review
+    depends_on:
+      - backend_design
+    task: "审查数据、权限、输入和密钥风险，输出安全基线：{{backend_design}}"
+    output: security_baseline
+  - id: quality_plan
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - product_spec
+      - frontend_plan
+      - security_baseline
+    task: "基于产品规格、前端计划和安全基线输出测试矩阵和发布风险：{{product_spec}}\n{{frontend_plan}}\n{{security_baseline}}"
+    output: quality_plan
+  - id: delivery_roadmap
+    employee: project-manager
+    skill: implementation-planning
+    depends_on:
+      - product_spec
+      - backend_design
+      - frontend_plan
+      - quality_plan
+    task: "汇总产品、后端、前端和质量计划，输出交付路线图：{{product_spec}}\n{{backend_design}}\n{{frontend_plan}}\n{{quality_plan}}"
+    output: delivery_roadmap
+

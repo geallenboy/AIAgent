@@ -1,0 +1,37 @@
+name: pr-code-review
+description: 对代码变更、PR 或实现方案做安全、性能、架构和测试审查。
+team: code-review-squad
+inputs:
+  - name: change_summary
+    required: true
+  - name: code_or_diff
+    required: false
+steps:
+  - id: change_understanding
+    employee: engineer
+    skill: implementation-planning
+    task: "总结变更范围、关键文件、行为变化和需要重点审查的地方：{{change_summary}}\n{{code_or_diff}}"
+    output: change_context
+  - id: architecture_risk_review
+    employee: architect
+    skill: architecture-review
+    depends_on:
+      - change_understanding
+    task: "审查设计边界、数据流、兼容性和迁移风险：{{change_context}}"
+    output: architecture_risks
+  - id: quality_risk_review
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - change_understanding
+    task: "审查功能、安全、性能、回归和测试缺口，按严重程度输出 findings：{{change_context}}"
+    output: quality_risks
+  - id: review_summary
+    employee: project-manager
+    skill: quality-review
+    depends_on:
+      - architecture_risk_review
+      - quality_risk_review
+    task: "综合架构风险和质量风险，输出是否可以进入下一步以及必须修复项：{{architecture_risks}}\n{{quality_risks}}"
+    output: review_summary
+

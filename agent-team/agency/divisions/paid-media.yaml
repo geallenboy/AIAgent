@@ -1,0 +1,14 @@
+id: paid-media
+name: Paid Media Division
+description: PPC, paid social, programmatic buying, tracking, creative strategy, search query analysis, and paid media auditing.
+employees:
+  - paid-media-auditor
+  - paid-media-creative-strategist
+  - paid-media-paid-social-strategist
+  - paid-media-ppc-strategist
+  - paid-media-programmatic-buyer
+  - paid-media-search-query-analyst
+  - paid-media-tracking-specialist
+teams:
+  - paid-media-agency
+

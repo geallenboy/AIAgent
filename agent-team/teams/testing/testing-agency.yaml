@@ -1,0 +1,32 @@
+id: testing-agency
+name: Testing Agency
+description: 测试结果分析、性能基准、API 测试、工具评估、工作流优化、证据和可访问性测试团队。
+use_when:
+  - 测试结果分析
+  - 性能测试
+  - API 测试
+  - 工具评估
+  - 工作流优化
+  - 可访问性测试
+  - 证据和现实性检查
+members:
+  lead: testing-test-results-analyzer
+  contributors:
+    - evidence-collector
+    - reality-checker
+    - testing-performance-benchmarker
+    - testing-api-tester
+    - testing-tool-evaluator
+    - testing-workflow-optimizer
+    - accessibility-auditor
+    - qa-reviewer
+default_workflows:
+  - testing-quality-review
+  - testing-workflow-optimization
+deliverables:
+  - 测试结果分析
+  - 性能和 API 测试计划
+  - 工具评估
+  - 工作流优化
+  - 证据和可访问性 findings
+

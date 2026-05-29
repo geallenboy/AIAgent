@@ -1,0 +1,47 @@
+name: project-delivery-plan
+description: 为复杂项目制定里程碑、生产节奏、阻塞跟踪、实验台账和 issue workflow。
+team: project-management-agency
+inputs:
+  - name: project_goal
+    required: true
+  - name: constraints
+    required: false
+  - name: backlog
+    required: false
+steps:
+  - id: project_plan
+    employee: project-management-senior-project-manager
+    skill: project-planning
+    task: "为项目制定范围、里程碑、风险、依赖和沟通节奏：{{project_goal}}\n约束：{{constraints}}\nBacklog：{{backlog}}"
+    output: project_plan
+  - id: production_plan
+    employee: project-management-studio-producer
+    skill: studio-operations
+    depends_on:
+      - project_plan
+    task: "基于项目计划，设计跨团队 production board、review cadence 和交接物：{{project_plan}}"
+    output: production_plan
+  - id: shepherd_plan
+    employee: project-management-project-shepherd
+    skill: project-planning
+    depends_on:
+      - project_plan
+      - production_plan
+    task: "设计项目推进节奏、阻塞追踪、决策提醒和状态更新格式：{{project_plan}}\n{{production_plan}}"
+    output: shepherd_plan
+  - id: experiment_tracking
+    employee: project-management-experiment-tracker
+    skill: experiment-tracking
+    depends_on:
+      - project_plan
+    task: "如果项目包含产品、增长或 UX 实验，设计实验台账、指标和复盘方式；如果不包含，说明不适用：{{project_plan}}"
+    output: experiment_tracking
+  - id: issue_workflow
+    employee: project-management-jira-workflow-steward
+    skill: workflow-governance
+    depends_on:
+      - production_plan
+      - shepherd_plan
+    task: "基于生产和推进计划，设计 Jira/Linear/GitHub Issues 的 issue 类型、状态、字段、看板和自动化：{{production_plan}}\n{{shepherd_plan}}"
+    output: issue_workflow
+

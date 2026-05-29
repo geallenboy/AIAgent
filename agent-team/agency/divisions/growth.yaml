@@ -1,0 +1,12 @@
+id: growth
+name: Growth Division
+description: Market research, messaging, content, launch planning, and growth experiments.
+employees:
+  - growth-hacker
+  - content-creator
+  - analytics-reporter
+  - product-manager
+teams:
+  - growth-analysis-squad
+  - launch-growth-agency
+

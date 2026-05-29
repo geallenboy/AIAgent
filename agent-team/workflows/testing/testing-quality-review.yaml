@@ -1,0 +1,55 @@
+name: testing-quality-review
+description: 综合测试结果、性能、API、可访问性和证据，输出质量评估和再验证计划。
+team: testing-agency
+inputs:
+  - name: artifact
+    required: true
+  - name: test_output
+    required: false
+  - name: acceptance_criteria
+    required: false
+steps:
+  - id: evidence_collection
+    employee: evidence-collector
+    skill: evidence-qa
+    task: "收集交付物、验收标准和测试输出中的证据、未验证声明和缺口：{{artifact}}\n测试输出：{{test_output}}\n验收标准：{{acceptance_criteria}}"
+    output: evidence_collection
+  - id: test_analysis
+    employee: testing-test-results-analyzer
+    skill: test-results-analysis
+    depends_on:
+      - evidence_collection
+    task: "分析测试输出、失败模式、flake、覆盖缺口和再验证路径：{{evidence_collection}}\n{{test_output}}"
+    output: test_analysis
+  - id: api_test_plan
+    employee: testing-api-tester
+    skill: api-testing
+    depends_on:
+      - evidence_collection
+    task: "如果交付物包含 API，设计 API 测试矩阵；如果不包含，说明不适用：{{evidence_collection}}"
+    output: api_test_plan
+  - id: performance_plan
+    employee: testing-performance-benchmarker
+    skill: performance-benchmarking
+    depends_on:
+      - evidence_collection
+    task: "为交付物设计性能基准、指标和回归阈值：{{evidence_collection}}"
+    output: performance_plan
+  - id: accessibility_review
+    employee: accessibility-auditor
+    skill: accessibility-review
+    depends_on:
+      - evidence_collection
+    task: "如果交付物包含 UI，检查可访问性、键盘路径、对比度和状态反馈；如果不包含，说明不适用：{{evidence_collection}}"
+    output: accessibility_review
+  - id: reality_summary
+    employee: reality-checker
+    skill: evidence-qa
+    depends_on:
+      - test_analysis
+      - api_test_plan
+      - performance_plan
+      - accessibility_review
+    task: "综合测试、API、性能和可访问性评估，输出真实质量状态、未验证项和下一步：{{test_analysis}}\n{{api_test_plan}}\n{{performance_plan}}\n{{accessibility_review}}"
+    output: reality_summary
+

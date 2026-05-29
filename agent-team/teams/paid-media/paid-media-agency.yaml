@@ -1,0 +1,31 @@
+id: paid-media-agency
+name: Paid Media Agency
+description: 付费广告策略、PPC、付费社交、程序化投放、创意测试、跟踪和账户审计团队。
+use_when:
+  - 付费广告投放
+  - PPC 搜索广告
+  - Meta/TikTok/LinkedIn/Reddit 付费社交
+  - 程序化展示广告
+  - 广告创意测试
+  - 转化跟踪和归因
+  - 广告账户审计
+members:
+  lead: paid-media-ppc-strategist
+  contributors:
+    - paid-media-paid-social-strategist
+    - paid-media-creative-strategist
+    - paid-media-tracking-specialist
+    - paid-media-search-query-analyst
+    - paid-media-programmatic-buyer
+    - paid-media-auditor
+    - analytics-reporter
+default_workflows:
+  - paid-media-campaign-plan
+  - paid-media-account-audit
+deliverables:
+  - 渠道和预算策略
+  - Campaign 结构
+  - 创意测试矩阵
+  - 跟踪和归因方案
+  - 优化和审计建议
+

@@ -1,0 +1,57 @@
+name: marketing-campaign-plan
+description: 为产品制定自然增长、内容、SEO/AEO、社媒、社区和指标计划。
+team: marketing-agency
+inputs:
+  - name: product
+    required: true
+  - name: audience
+    required: false
+  - name: markets
+    required: false
+  - name: constraints
+    required: false
+steps:
+  - id: channel_strategy
+    employee: marketing-social-media-strategist
+    skill: marketing-channel-strategy
+    task: "为产品制定整体营销渠道策略：{{product}}\n目标用户：{{audience}}\n市场：{{markets}}\n约束：{{constraints}}"
+    output: channel_strategy
+  - id: seo_aeo_plan
+    employee: marketing-agentic-search-optimizer
+    skill: seo-aeo-strategy
+    depends_on:
+      - channel_strategy
+    task: "基于渠道策略，设计 SEO/AEO、AI citation 和可引用内容计划：{{channel_strategy}}"
+    output: seo_aeo_plan
+  - id: content_plan
+    employee: content-creator
+    skill: platform-content-strategy
+    depends_on:
+      - channel_strategy
+      - seo_aeo_plan
+    task: "基于渠道和 SEO/AEO 计划，输出内容支柱、平台内容模板和发布节奏：{{channel_strategy}}\n{{seo_aeo_plan}}"
+    output: content_plan
+  - id: community_plan
+    employee: marketing-reddit-community-builder
+    skill: platform-content-strategy
+    depends_on:
+      - channel_strategy
+    task: "基于渠道策略，设计 Reddit/社区真实参与、反馈收集和转化路径：{{channel_strategy}}"
+    output: community_plan
+  - id: app_store_plan
+    employee: marketing-app-store-optimizer
+    skill: app-store-growth
+    depends_on:
+      - channel_strategy
+    task: "如果产品包含 App 或小程序，设计商店优化、素材和转化实验；如果不适用，说明不适用原因：{{channel_strategy}}"
+    output: app_store_plan
+  - id: metrics_plan
+    employee: analytics-reporter
+    skill: analytics-reporting
+    depends_on:
+      - content_plan
+      - community_plan
+      - app_store_plan
+    task: "汇总内容、社区和商店计划，定义指标、事件和复盘节奏：{{content_plan}}\n{{community_plan}}\n{{app_store_plan}}"
+    output: metrics_plan
+

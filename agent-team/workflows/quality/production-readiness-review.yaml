@@ -1,0 +1,53 @@
+name: production-readiness-review
+description: 上线前检查构建、测试、安全、合规、监控、回滚和发布建议。
+team: production-readiness-agency
+inputs:
+  - name: release_scope
+    required: true
+  - name: verification_results
+    required: false
+steps:
+  - id: devops_check
+    employee: devops-automator
+    skill: launch-readiness
+    task: "检查发布范围的构建、测试、环境变量、部署、监控和回滚需求：{{release_scope}}\n验证结果：{{verification_results}}"
+    output: devops_check
+  - id: qa_check
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - devops_check
+    task: "基于发布范围和 DevOps 检查，审查核心路径、回归和测试缺口：{{release_scope}}\n{{devops_check}}"
+    output: qa_check
+  - id: security_check
+    employee: security-engineer
+    skill: security-review
+    depends_on:
+      - devops_check
+    task: "基于发布范围和 DevOps 检查，审查安全基线、密钥、权限和数据风险：{{release_scope}}\n{{devops_check}}"
+    output: security_check
+  - id: compliance_check
+    employee: legal-compliance-checker
+    skill: compliance-review
+    depends_on:
+      - devops_check
+    task: "基于发布范围检查隐私、合规和必要免责声明：{{release_scope}}\n{{devops_check}}"
+    output: compliance_check
+  - id: evidence_pack
+    employee: evidence-collector
+    skill: evidence-qa
+    depends_on:
+      - qa_check
+      - security_check
+      - compliance_check
+    task: "整理上线证据包，列出已验证、失败和未验证项：{{qa_check}}\n{{security_check}}\n{{compliance_check}}"
+    output: evidence_pack
+  - id: go_no_go
+    employee: project-manager
+    skill: launch-readiness
+    depends_on:
+      - devops_check
+      - evidence_pack
+    task: "综合 DevOps 检查和证据包，输出 Go/No-Go、阻塞项、风险接受项和下一步：{{devops_check}}\n{{evidence_pack}}"
+    output: go_no_go
+

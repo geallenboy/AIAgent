@@ -1,0 +1,38 @@
+id: engineering
+name: Engineering Division
+description: Architecture, implementation planning, frontend/backend execution, DevOps, and security.
+employees:
+  - architect
+  - engineer
+  - frontend-developer
+  - backend-architect
+  - mobile-app-builder
+  - ai-engineer
+  - devops-automator
+  - rapid-prototyper
+  - senior-developer
+  - filament-optimization-specialist
+  - security-engineer
+  - autonomous-optimization-architect
+  - embedded-firmware-engineer
+  - incident-response-commander
+  - solidity-smart-contract-engineer
+  - codebase-onboarding-engineer
+  - technical-writer
+  - threat-detection-engineer
+  - wechat-mini-program-developer
+  - code-reviewer
+  - database-optimizer
+  - git-workflow-master
+  - sre
+  - ai-data-remediation-engineer
+  - data-engineer
+  - feishu-integration-developer
+  - cms-developer
+  - email-intelligence-engineer
+  - voice-ai-integration-engineer
+teams:
+  - full-stack-agency
+  - code-review-squad
+  - production-readiness-agency
+  - engineering-specialist-agency

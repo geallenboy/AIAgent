@@ -1,0 +1,54 @@
+name: engineering-specialist-routing
+description: 为复杂工程任务选择合适 Engineering specialist，并输出执行和验证计划。
+team: engineering-specialist-agency
+inputs:
+  - name: engineering_task
+    required: true
+  - name: current_project_context
+    required: false
+  - name: constraints
+    required: false
+steps:
+  - id: route_specialists
+    employee: agency-orchestrator
+    skill: engineering-specialist-routing
+    task: "判断工程任务需要哪些 specialist、哪些可以并行、哪些是关键路径：{{engineering_task}}\n项目上下文：{{current_project_context}}\n约束：{{constraints}}"
+    output: specialist_route
+  - id: codebase_orientation
+    employee: codebase-onboarding-engineer
+    skill: architecture-review
+    depends_on:
+      - route_specialists
+    task: "基于路由方案和项目上下文，整理代码库事实、入口、关键路径和未知项：{{specialist_route}}\n{{current_project_context}}"
+    output: codebase_orientation
+  - id: implementation_strategy
+    employee: senior-developer
+    skill: implementation-planning
+    depends_on:
+      - route_specialists
+      - codebase_orientation
+    task: "基于路由和代码库导览，输出工程实现策略、任务拆分和质量门：{{specialist_route}}\n{{codebase_orientation}}"
+    output: implementation_strategy
+  - id: data_reliability_review
+    employee: sre
+    skill: launch-readiness
+    depends_on:
+      - implementation_strategy
+    task: "从可靠性、监控、容量和发布风险角度审查实现策略：{{implementation_strategy}}"
+    output: reliability_review
+  - id: security_quality_review
+    employee: code-reviewer
+    skill: quality-review
+    depends_on:
+      - implementation_strategy
+    task: "从代码质量、安全、可维护性和测试缺口角度审查实现策略：{{implementation_strategy}}"
+    output: engineering_review
+  - id: engineering_handoff
+    employee: technical-writer
+    skill: evidence-qa
+    depends_on:
+      - implementation_strategy
+      - data_reliability_review
+      - security_quality_review
+    task: "把工程策略、可靠性审查和代码审查整理成可执行交接文档：{{implementation_strategy}}\n{{reliability_review}}\n{{engineering_review}}"
+    output: engineering_handoff

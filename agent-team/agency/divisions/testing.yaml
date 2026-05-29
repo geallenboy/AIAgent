@@ -1,0 +1,16 @@
+id: testing
+name: Testing Division
+description: Evidence collection, reality checks, test result analysis, performance benchmarking, API testing, tool evaluation, workflow optimization, and accessibility testing.
+employees:
+  - evidence-collector
+  - reality-checker
+  - testing-test-results-analyzer
+  - testing-performance-benchmarker
+  - testing-api-tester
+  - testing-tool-evaluator
+  - testing-workflow-optimizer
+  - accessibility-auditor
+teams:
+  - testing-agency
+  - evidence-quality-agency
+

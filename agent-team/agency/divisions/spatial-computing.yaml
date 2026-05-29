@@ -1,0 +1,13 @@
+id: spatial-computing
+name: Spatial Computing Division
+description: XR interfaces, visionOS spatial apps, immersive scenes, Metal rendering, cockpit interactions, and terminal-to-spatial workflows.
+employees:
+  - spatial-xr-interface-architect
+  - spatial-macos-metal-engineer
+  - spatial-xr-immersive-developer
+  - spatial-xr-cockpit-interaction-specialist
+  - spatial-visionos-spatial-engineer
+  - spatial-terminal-integration-specialist
+teams:
+  - spatial-computing-agency
+

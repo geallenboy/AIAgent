@@ -1,0 +1,68 @@
+name: design-specialist-routing
+description: 为设计任务选择合适 Design specialist，并输出 UX、UI、品牌、视觉和可访问性建议。
+team: design-specialist-agency
+inputs:
+  - name: design_task
+    required: true
+  - name: product_context
+    required: false
+  - name: brand_constraints
+    required: false
+steps:
+  - id: route_design_specialists
+    employee: ux-architect
+    skill: design-specialist-routing
+    task: "判断设计任务需要哪些 specialist，并定义设计交付物和评审顺序：{{design_task}}\n产品上下文：{{product_context}}\n品牌约束：{{brand_constraints}}"
+    output: design_route
+  - id: ux_structure
+    employee: ux-researcher
+    skill: ux-design
+    depends_on:
+      - route_design_specialists
+    task: "基于设计路由输出用户目标、关键路径、研究假设和体验风险：{{design_route}}\n{{product_context}}"
+    output: ux_structure
+  - id: interface_direction
+    employee: ui-designer
+    skill: ux-design
+    depends_on:
+      - ux_structure
+    task: "基于 UX 结构输出页面结构、组件、状态和视觉层级建议：{{ux_structure}}"
+    output: interface_direction
+  - id: brand_direction
+    employee: brand-guardian
+    skill: brand-review
+    depends_on:
+      - interface_direction
+    task: "基于界面方向和品牌约束审查品牌一致性、语气和信任风险：{{interface_direction}}\n{{brand_constraints}}"
+    output: brand_direction
+  - id: story_and_assets
+    employee: visual-storyteller
+    skill: visual-storytelling
+    depends_on:
+      - brand_direction
+    task: "基于品牌方向输出视觉故事线、画面顺序和素材方向：{{brand_direction}}"
+    output: story_and_assets
+  - id: accessibility_check
+    employee: accessibility-auditor
+    skill: accessibility-review
+    depends_on:
+      - interface_direction
+    task: "审查界面方向的可访问性、键盘路径、对比度、状态反馈和验证方法：{{interface_direction}}"
+    output: accessibility_check
+  - id: delight_layer
+    employee: whimsy-injector
+    skill: brand-review
+    depends_on:
+      - brand_direction
+      - accessibility_check
+    task: "在不破坏品牌、可访问性和任务效率的前提下，提出微交互、空状态和愉悦细节：{{brand_direction}}\n{{accessibility_check}}"
+    output: delight_layer
+  - id: image_prompts
+    employee: image-prompt-engineer
+    skill: visual-storytelling
+    depends_on:
+      - story_and_assets
+      - brand_direction
+    task: "把视觉故事和品牌方向转成可用于 AI 图片生成的提示词、风格参数和负面约束：{{story_and_assets}}\n{{brand_direction}}"
+    output: image_prompts
+

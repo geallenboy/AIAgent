@@ -1,0 +1,37 @@
+name: testing-workflow-optimization
+description: 审查当前测试、发布或 agent workflow，输出瓶颈、质量门和自动化机会。
+team: testing-agency
+inputs:
+  - name: current_workflow
+    required: true
+  - name: pain_points
+    required: false
+steps:
+  - id: workflow_diagnosis
+    employee: testing-workflow-optimizer
+    skill: workflow-optimization
+    task: "审查当前工作流、等待、返工、重复步骤、未验证交付和交接失败：{{current_workflow}}\n痛点：{{pain_points}}"
+    output: workflow_diagnosis
+  - id: tool_review
+    employee: testing-tool-evaluator
+    skill: tool-evaluation
+    depends_on:
+      - workflow_diagnosis
+    task: "基于工作流诊断，评估是否需要新工具、自动化或平台，并输出采用/放弃建议：{{workflow_diagnosis}}"
+    output: tool_review
+  - id: evidence_gate
+    employee: evidence-collector
+    skill: evidence-qa
+    depends_on:
+      - workflow_diagnosis
+      - tool_review
+    task: "为优化后的工作流设计证据门、验证矩阵和完成声明规则：{{workflow_diagnosis}}\n{{tool_review}}"
+    output: evidence_gate
+  - id: optimized_workflow
+    employee: reality-checker
+    skill: workflow-optimization
+    depends_on:
+      - evidence_gate
+    task: "综合诊断、工具评估和证据门，输出更轻、更可靠的目标工作流：{{evidence_gate}}"
+    output: optimized_workflow
+

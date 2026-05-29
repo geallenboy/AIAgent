@@ -1,0 +1,37 @@
+name: studio-operations-review
+description: 审查现有 agency/studio 运行方式，输出 intake、production、review、delivery 和 retrospective 改进方案。
+team: project-management-agency
+inputs:
+  - name: current_process
+    required: true
+  - name: pain_points
+    required: false
+steps:
+  - id: operations_audit
+    employee: project-management-studio-operations
+    skill: studio-operations
+    task: "审查当前 studio/agency 流程、角色、模板、看板和痛点：{{current_process}}\n痛点：{{pain_points}}"
+    output: operations_audit
+  - id: producer_review
+    employee: project-management-studio-producer
+    skill: studio-operations
+    depends_on:
+      - operations_audit
+    task: "基于运营审查，设计 production board、评审节奏和交接物标准：{{operations_audit}}"
+    output: producer_review
+  - id: workflow_review
+    employee: project-management-jira-workflow-steward
+    skill: workflow-governance
+    depends_on:
+      - operations_audit
+    task: "基于运营审查，设计 issue workflow、字段、状态和报告视图：{{operations_audit}}"
+    output: workflow_review
+  - id: improvement_plan
+    employee: project-management-senior-project-manager
+    skill: project-planning
+    depends_on:
+      - producer_review
+      - workflow_review
+    task: "综合生产和工作流审查，输出流程改进路线图和落地顺序：{{producer_review}}\n{{workflow_review}}"
+    output: improvement_plan
+

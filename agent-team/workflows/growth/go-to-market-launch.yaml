@@ -1,0 +1,48 @@
+name: go-to-market-launch
+description: 为产品发布生成定位、内容、增长实验、指标和复盘计划。
+team: launch-growth-agency
+inputs:
+  - name: product
+    required: true
+  - name: audience
+    required: false
+  - name: constraints
+    required: false
+steps:
+  - id: positioning
+    employee: product-manager
+    skill: requirement-analysis
+    task: "明确产品定位、目标用户、核心承诺和非目标：{{product}}\n目标用户：{{audience}}\n约束：{{constraints}}"
+    output: positioning
+  - id: growth_experiments
+    employee: growth-hacker
+    skill: growth-experimentation
+    depends_on:
+      - positioning
+    task: "基于定位设计获客、激活和留存实验：{{positioning}}"
+    output: growth_experiments
+  - id: launch_content
+    employee: content-creator
+    skill: market-research
+    depends_on:
+      - positioning
+      - growth_experiments
+    task: "基于定位和增长实验输出发布文案、内容主题和渠道素材：{{positioning}}\n{{growth_experiments}}"
+    output: launch_content
+  - id: metrics_plan
+    employee: analytics-reporter
+    skill: analytics-reporting
+    depends_on:
+      - positioning
+      - growth_experiments
+    task: "定义发布指标、事件、漏斗和复盘方式：{{positioning}}\n{{growth_experiments}}"
+    output: metrics_plan
+  - id: launch_plan
+    employee: project-manager
+    skill: implementation-planning
+    depends_on:
+      - launch_content
+      - metrics_plan
+    task: "汇总内容和指标，输出发布节奏、负责人和复盘计划：{{launch_content}}\n{{metrics_plan}}"
+    output: launch_plan
+

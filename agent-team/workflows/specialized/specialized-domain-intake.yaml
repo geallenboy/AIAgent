@@ -1,0 +1,39 @@
+name: specialized-domain-intake
+description: 为法律、医疗、金融、房地产、HR、客服等专业场景做 intake、风险识别、文档和升级建议。
+team: specialized-agency
+inputs:
+  - name: domain_request
+    required: true
+  - name: domain
+    required: false
+  - name: constraints
+    required: false
+steps:
+  - id: intake
+    employee: specialized-customer-service
+    skill: domain-intake
+    task: "对专业请求进行初步分类、事实收集和安全回复：{{domain_request}}\n领域：{{domain}}\n约束：{{constraints}}"
+    output: intake
+  - id: compliance_audit
+    employee: specialized-compliance-auditor
+    skill: compliance-review
+    depends_on:
+      - intake
+    task: "基于 intake 检查法律、医疗、金融、隐私、劳动或平台政策风险，并标记专业咨询事项：{{intake}}"
+    output: compliance_audit
+  - id: document_or_reply
+    employee: specialized-document-generator
+    skill: domain-document-review
+    depends_on:
+      - intake
+      - compliance_audit
+    task: "根据 intake 和合规审计，生成安全回复、文档草案或待补材料清单：{{intake}}\n{{compliance_audit}}"
+    output: document_or_reply
+  - id: escalation_summary
+    employee: support-executive-summary-generator
+    skill: executive-summary
+    depends_on:
+      - document_or_reply
+    task: "生成给用户或负责人看的摘要，包含事实、风险、专业咨询提醒和下一步：{{document_or_reply}}"
+    output: escalation_summary
+

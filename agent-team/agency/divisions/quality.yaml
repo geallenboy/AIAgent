@@ -1,0 +1,12 @@
+id: quality
+name: Quality Division
+description: QA, review, evidence collection, reality checks, release confidence, and compliance.
+employees:
+  - qa-reviewer
+  - legal-compliance-checker
+  - security-engineer
+teams:
+  - code-review-squad
+  - evidence-quality-agency
+  - production-readiness-agency
+  - testing-agency

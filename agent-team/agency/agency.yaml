@@ -1,0 +1,34 @@
+id: codex-first-agency
+name: Codex First Agency
+description: A local AI agency roster for routing user requests to specialized Codex employees, teams, and workflows.
+inspired_by:
+  - https://github.com/msitarzewski/agency-agents
+principles:
+  - Keep the human as final decision maker.
+  - Route work by outcome, not by tool.
+  - Prefer small specialist teams with clear handoffs.
+  - Use evidence and validation before claiming completion.
+  - Record assumptions when user intent is incomplete.
+divisions:
+  - strategy
+  - product
+  - project-management
+  - engineering
+  - design
+  - growth
+  - marketing
+  - paid-media
+  - testing
+  - quality
+  - finance
+  - support
+  - spatial-computing
+  - specialized
+  - operations
+default_orchestrator: agency-orchestrator
+default_output:
+  - 背景理解
+  - 分工结果
+  - 决策建议
+  - 风险/疑问
+  - 下一步行动

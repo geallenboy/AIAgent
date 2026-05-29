@@ -1,0 +1,39 @@
+name: model-qa-review
+description: 测试模型、prompt、agent workflow 和工具调用质量，输出 rubric、失败分类和回归测试建议。
+team: specialized-agency
+inputs:
+  - name: model_or_agent_output
+    required: true
+  - name: task_spec
+    required: false
+  - name: eval_examples
+    required: false
+steps:
+  - id: qa_scope
+    employee: specialized-model-qa-specialist
+    skill: model-qa
+    task: "定义模型/agent QA 范围、rubric、评估样例和通过标准：{{model_or_agent_output}}\n任务规格：{{task_spec}}\n样例：{{eval_examples}}"
+    output: qa_scope
+  - id: failure_analysis
+    employee: testing-test-results-analyzer
+    skill: test-results-analysis
+    depends_on:
+      - qa_scope
+    task: "基于 QA 范围分析失败类型、回归风险、格式漂移和工具误用：{{qa_scope}}"
+    output: failure_analysis
+  - id: reality_review
+    employee: reality-checker
+    skill: evidence-qa
+    depends_on:
+      - failure_analysis
+    task: "检查 QA 结论是否有证据支持，列出未验证项和下一步 eval：{{failure_analysis}}"
+    output: reality_review
+  - id: qa_report
+    employee: specialized-model-qa-specialist
+    skill: model-qa
+    depends_on:
+      - failure_analysis
+      - reality_review
+    task: "汇总模型 QA 报告、rubric、失败分类、回归测试和改进建议：{{failure_analysis}}\n{{reality_review}}"
+    output: qa_report
+

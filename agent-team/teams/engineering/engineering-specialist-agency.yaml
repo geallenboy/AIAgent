@@ -1,0 +1,33 @@
+id: engineering-specialist-agency
+name: Engineering Specialist Agency
+description: 从 Engineering Division 选择合适专家处理复杂工程、平台、数据、AI、可靠性和文档任务。
+use_when:
+  - 复杂工程任务
+  - 技术栈专项问题
+  - 代码库理解和重构
+  - 性能、可靠性、安全或数据工程
+members:
+  lead: agency-orchestrator
+  contributors:
+    - codebase-onboarding-engineer
+    - senior-developer
+    - frontend-developer
+    - backend-architect
+    - mobile-app-builder
+    - ai-engineer
+    - devops-automator
+    - security-engineer
+    - database-optimizer
+    - data-engineer
+    - sre
+    - code-reviewer
+    - technical-writer
+default_workflows:
+  - engineering-specialist-routing
+deliverables:
+  - 工程任务分类
+  - specialist 分工
+  - 技术方案
+  - 风险和质量门
+  - 验证计划
+

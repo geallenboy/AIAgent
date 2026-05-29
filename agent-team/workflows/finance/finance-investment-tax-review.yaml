@@ -1,0 +1,37 @@
+name: finance-investment-tax-review
+description: 对投资研究、税务准备、合规风险和专业咨询问题进行结构化分析。
+team: finance-agency
+inputs:
+  - name: finance_question
+    required: true
+  - name: jurisdiction
+    required: false
+  - name: provided_data
+    required: false
+steps:
+  - id: investment_research
+    employee: finance-investment-researcher
+    skill: investment-research
+    task: "如果问题涉及投资、公司、行业或市场，进行非投资建议性质的研究摘要；如果不涉及，说明不适用：{{finance_question}}\n数据：{{provided_data}}"
+    output: investment_research
+  - id: tax_readiness
+    employee: finance-tax-strategist
+    skill: tax-readiness
+    task: "如果问题涉及税务、收入、支出、辖区或申报准备，整理资料清单、风险和专业咨询问题；如果不涉及，说明不适用：{{finance_question}}\n辖区：{{jurisdiction}}\n数据：{{provided_data}}"
+    output: tax_readiness
+  - id: compliance_review
+    employee: legal-compliance-checker
+    skill: compliance-review
+    depends_on:
+      - investment_research
+      - tax_readiness
+    task: "审查投资研究和税务准备中的金融、税务、法律和合规风险，并标记专业咨询事项：{{investment_research}}\n{{tax_readiness}}"
+    output: compliance_review
+  - id: finance_advisory_summary
+    employee: support-executive-summary-generator
+    skill: executive-summary
+    depends_on:
+      - compliance_review
+    task: "生成安全摘要：区分事实、非投资/非税务建议、风险、待补数据和下一步专业咨询问题：{{compliance_review}}"
+    output: finance_advisory_summary
+

@@ -1,0 +1,25 @@
+id: evidence-quality-agency
+name: Evidence Quality Agency
+description: 用证据、现实性评估和 QA 审查降低交付风险。
+use_when:
+  - 方案可信度检查
+  - 交付物验收
+  - 风险复核
+  - 未验证声明清理
+members:
+  lead: reality-checker
+  contributors:
+    - evidence-collector
+    - qa-reviewer
+    - security-engineer
+    - legal-compliance-checker
+    - project-manager
+default_workflows:
+  - evidence-quality-review
+deliverables:
+  - 验证矩阵
+  - 风险清单
+  - 未验证项
+  - 现实性建议
+  - 下一步验证
+

@@ -1,0 +1,39 @@
+name: mcp-workflow-design
+description: 为跨系统 agent 工作流设计 MCP tools、workflow、权限、失败恢复和审计。
+team: specialized-agency
+inputs:
+  - name: automation_goal
+    required: true
+  - name: systems
+    required: false
+  - name: security_constraints
+    required: false
+steps:
+  - id: workflow_architecture
+    employee: specialized-workflow-architect
+    skill: specialized-workflow-design
+    task: "为自动化目标设计触发器、状态、交接物、人工审批点和失败恢复：{{automation_goal}}\n系统：{{systems}}\n安全约束：{{security_constraints}}"
+    output: workflow_architecture
+  - id: mcp_design
+    employee: specialized-mcp-builder
+    skill: mcp-tool-design
+    depends_on:
+      - workflow_architecture
+    task: "基于工作流架构，设计 MCP tools/resources、schema、权限和审计：{{workflow_architecture}}"
+    output: mcp_design
+  - id: security_compliance_review
+    employee: specialized-compliance-auditor
+    skill: compliance-review
+    depends_on:
+      - mcp_design
+    task: "审查 MCP 和工作流设计中的权限、隐私、合规、越权和审计风险：{{mcp_design}}"
+    output: security_compliance_review
+  - id: implementation_handoff
+    employee: technical-writer
+    skill: mcp-tool-design
+    depends_on:
+      - mcp_design
+      - security_compliance_review
+    task: "将 MCP 设计和合规审查整理成工程实现交接文档：{{mcp_design}}\n{{security_compliance_review}}"
+    output: implementation_handoff
+

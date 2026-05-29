@@ -1,0 +1,45 @@
+name: feature-to-dev-tasks
+description: 把一个功能想法拆成开发任务、测试场景和验收标准。
+team: product-development-squad
+inputs:
+  - name: feature
+    required: true
+  - name: current_project_context
+    required: false
+steps:
+  - id: define_feature
+    employee: product-manager
+    skill: requirement-analysis
+    task: "明确功能目标、用户价值、范围和验收标准：{{feature}}\n项目上下文：{{current_project_context}}"
+    output: feature_spec
+  - id: design_implementation
+    employee: architect
+    skill: architecture-review
+    depends_on:
+      - define_feature
+    task: "基于功能规格设计实现边界、接口和数据流：{{feature_spec}}"
+    output: implementation_design
+  - id: split_tasks
+    employee: engineer
+    skill: implementation-planning
+    depends_on:
+      - design_implementation
+    task: "把实现设计拆成可独立验证的开发任务：{{implementation_design}}"
+    output: dev_tasks
+  - id: test_review
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - define_feature
+      - split_tasks
+    task: "为功能规格和开发任务补齐测试场景、回归风险和验收建议：{{feature_spec}}\n{{dev_tasks}}"
+    output: test_plan
+  - id: delivery_plan
+    employee: project-manager
+    skill: implementation-planning
+    depends_on:
+      - split_tasks
+      - test_review
+    task: "汇总开发任务、测试计划和执行顺序：{{dev_tasks}}\n{{test_plan}}"
+    output: delivery_plan
+

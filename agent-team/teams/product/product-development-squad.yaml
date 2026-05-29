@@ -1,0 +1,25 @@
+id: product-development-squad
+name: 产品开发小队
+description: 从想法到 MVP、技术方案和开发任务。
+use_when:
+  - 新产品规划
+  - MVP 定义
+  - 功能设计
+  - 开发任务拆解
+members:
+  lead: product-manager
+  contributors:
+    - architect
+    - engineer
+    - qa-reviewer
+    - project-manager
+default_workflows:
+  - new-product-mvp
+  - feature-to-dev-tasks
+deliverables:
+  - 需求摘要
+  - MVP 范围
+  - 技术方案
+  - 开发任务
+  - 测试与验收计划
+

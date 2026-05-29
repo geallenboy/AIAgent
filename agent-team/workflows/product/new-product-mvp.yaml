@@ -1,0 +1,38 @@
+name: new-product-mvp
+description: 从一句话产品想法生成 MVP、技术方案、测试计划和行动计划。
+team: product-development-squad
+inputs:
+  - name: idea
+    required: true
+  - name: constraints
+    required: false
+steps:
+  - id: requirement_analysis
+    employee: product-manager
+    skill: requirement-analysis
+    task: "分析产品想法，明确用户、场景、MVP 范围和验收标准：{{idea}}\n约束：{{constraints}}"
+    output: requirements
+  - id: architecture_review
+    employee: architect
+    skill: architecture-review
+    depends_on:
+      - requirement_analysis
+    task: "基于需求输出技术方案、模块边界、数据流和风险：{{requirements}}"
+    output: architecture
+  - id: quality_plan
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - requirement_analysis
+      - architecture_review
+    task: "基于需求和技术方案设计验收测试、风险清单和发布建议：{{requirements}}\n{{architecture}}"
+    output: quality_plan
+  - id: action_plan
+    employee: project-manager
+    skill: implementation-planning
+    depends_on:
+      - requirement_analysis
+      - architecture_review
+      - quality_plan
+    task: "综合需求、技术方案和测试计划，输出下一步任务顺序：{{requirements}}\n{{architecture}}\n{{quality_plan}}"
+    output: action_plan

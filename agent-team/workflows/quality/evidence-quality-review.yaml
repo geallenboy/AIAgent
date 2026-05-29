@@ -1,0 +1,45 @@
+name: evidence-quality-review
+description: 用证据、QA、安全、合规和现实性评估审查方案或交付物。
+team: evidence-quality-agency
+inputs:
+  - name: artifact
+    required: true
+  - name: acceptance_criteria
+    required: false
+steps:
+  - id: collect_evidence
+    employee: evidence-collector
+    skill: evidence-qa
+    task: "为交付物收集证据、来源、命令输出和未验证声明：{{artifact}}\n验收标准：{{acceptance_criteria}}"
+    output: evidence
+  - id: qa_assessment
+    employee: qa-reviewer
+    skill: quality-review
+    depends_on:
+      - collect_evidence
+    task: "基于证据和验收标准检查功能、测试和回归风险：{{evidence}}\n{{acceptance_criteria}}"
+    output: qa_assessment
+  - id: security_assessment
+    employee: security-engineer
+    skill: security-review
+    depends_on:
+      - collect_evidence
+    task: "基于证据检查安全、数据和权限风险：{{evidence}}"
+    output: security_assessment
+  - id: compliance_assessment
+    employee: legal-compliance-checker
+    skill: compliance-review
+    depends_on:
+      - collect_evidence
+    task: "基于证据检查隐私、法律、金融、医疗、版权或平台政策风险：{{evidence}}"
+    output: compliance_assessment
+  - id: reality_assessment
+    employee: reality-checker
+    skill: evidence-qa
+    depends_on:
+      - qa_assessment
+      - security_assessment
+      - compliance_assessment
+    task: "综合 QA、安全和合规审查，指出不成立假设、真实风险和下一步建议：{{qa_assessment}}\n{{security_assessment}}\n{{compliance_assessment}}"
+    output: reality_assessment
+

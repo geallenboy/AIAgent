@@ -1,0 +1,25 @@
+id: production-readiness-agency
+name: Production Readiness Agency
+description: 上线前检查工程、质量、安全、合规、监控和回滚。
+use_when:
+  - 上线前检查
+  - 发布风险评估
+  - DevOps 自动化
+  - 安全合规复核
+members:
+  lead: devops-automator
+  contributors:
+    - engineer
+    - security-engineer
+    - qa-reviewer
+    - legal-compliance-checker
+    - evidence-collector
+    - project-manager
+default_workflows:
+  - production-readiness-review
+deliverables:
+  - 构建和测试检查
+  - 安全与合规风险
+  - 监控和回滚计划
+  - Go/No-Go 建议
+

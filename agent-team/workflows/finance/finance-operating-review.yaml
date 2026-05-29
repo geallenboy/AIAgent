@@ -1,0 +1,39 @@
+name: finance-operating-review
+description: 分析经营财务、账务质量、预算预测、现金流和管理建议。
+team: finance-agency
+inputs:
+  - name: finance_data
+    required: true
+  - name: business_context
+    required: false
+  - name: planning_horizon
+    required: false
+steps:
+  - id: bookkeeping_review
+    employee: finance-bookkeeper-controller
+    skill: bookkeeping-control
+    task: "审查账务数据、分类、对账、月结和异常：{{finance_data}}\n业务上下文：{{business_context}}"
+    output: bookkeeping_review
+  - id: financial_analysis
+    employee: finance-financial-analyst
+    skill: financial-analysis
+    depends_on:
+      - bookkeeping_review
+    task: "基于账务审查和财务数据，分析收入、成本、现金流、利润、单位经济和异常：{{bookkeeping_review}}\n{{finance_data}}"
+    output: financial_analysis
+  - id: fpa_forecast
+    employee: finance-fpa-analyst
+    skill: fpa-forecasting
+    depends_on:
+      - financial_analysis
+    task: "基于财务分析，制定预算/预测、情景模型、runway 和管理建议：{{financial_analysis}}\n规划周期：{{planning_horizon}}"
+    output: fpa_forecast
+  - id: finance_summary
+    employee: support-executive-summary-generator
+    skill: executive-summary
+    depends_on:
+      - financial_analysis
+      - fpa_forecast
+    task: "汇总财务分析和 FP&A 预测，生成面向决策的一页摘要、风险和下一步：{{financial_analysis}}\n{{fpa_forecast}}"
+    output: finance_summary
+

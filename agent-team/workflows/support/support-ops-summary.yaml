@@ -1,0 +1,47 @@
+name: support-ops-summary
+description: 汇总支持、财务、基础设施、合规和数据，生成运营或高层摘要。
+team: support-agency
+inputs:
+  - name: period
+    required: true
+  - name: support_data
+    required: false
+  - name: finance_data
+    required: false
+  - name: infrastructure_data
+    required: false
+steps:
+  - id: support_summary
+    employee: support-responder
+    skill: support-response
+    task: "汇总时间段内的支持问题、常见主题、升级和 FAQ 机会：{{period}}\n{{support_data}}"
+    output: support_summary
+  - id: finance_summary
+    employee: support-finance-tracker
+    skill: finance-tracking
+    task: "汇总时间段内的收入、成本、退款、预算和异常；没有数据则列出需要收集的字段：{{period}}\n{{finance_data}}"
+    output: finance_summary
+  - id: infrastructure_summary
+    employee: support-infrastructure-maintainer
+    skill: infrastructure-maintenance
+    task: "汇总基础设施健康、续费、备份、监控、成本和维护风险：{{period}}\n{{infrastructure_data}}"
+    output: infrastructure_summary
+  - id: analytics_summary
+    employee: analytics-reporter
+    skill: analytics-reporting
+    depends_on:
+      - support_summary
+      - finance_summary
+    task: "基于支持和财务摘要，整理指标、趋势、异常和下期建议：{{support_summary}}\n{{finance_summary}}"
+    output: analytics_summary
+  - id: executive_summary
+    employee: support-executive-summary-generator
+    skill: executive-summary
+    depends_on:
+      - support_summary
+      - finance_summary
+      - infrastructure_summary
+      - analytics_summary
+    task: "生成一页高层摘要，包含关键指标、风险、决策需求和下一步：{{support_summary}}\n{{finance_summary}}\n{{infrastructure_summary}}\n{{analytics_summary}}"
+    output: executive_summary
+

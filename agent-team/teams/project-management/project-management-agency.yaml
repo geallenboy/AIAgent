@@ -1,0 +1,29 @@
+id: project-management-agency
+name: Project Management Agency
+description: 项目计划、studio 生产管理、长期推进、实验追踪和 Jira/issue workflow 治理团队。
+use_when:
+  - 项目计划
+  - 里程碑管理
+  - 跨团队交付
+  - 实验追踪
+  - Jira/Linear/GitHub Issues 工作流
+  - Studio 运营
+members:
+  lead: project-management-senior-project-manager
+  contributors:
+    - project-manager
+    - project-management-studio-producer
+    - project-management-project-shepherd
+    - project-management-studio-operations
+    - project-management-experiment-tracker
+    - project-management-jira-workflow-steward
+default_workflows:
+  - project-delivery-plan
+  - studio-operations-review
+deliverables:
+  - 项目计划
+  - 里程碑和依赖
+  - 生产和评审节奏
+  - 实验台账
+  - 工作流治理建议
+

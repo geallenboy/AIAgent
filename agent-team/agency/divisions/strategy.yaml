@@ -1,0 +1,12 @@
+id: strategy
+name: Strategy Division
+description: Product strategy, requirement framing, roadmap tradeoffs, and business viability.
+employees:
+  - agency-orchestrator
+  - product-manager
+  - project-manager
+  - analytics-reporter
+teams:
+  - product-development-squad
+  - full-stack-agency
+

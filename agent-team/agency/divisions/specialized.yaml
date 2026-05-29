@@ -1,0 +1,25 @@
+id: specialized
+name: Specialized Division
+description: Cross-domain specialist agents for orchestration, MCP/tooling, documents, workflows, CRM, customer service, legal, finance, real estate, healthcare, retail, HR, hospitality, blockchain security, compliance, and model QA.
+employees:
+  - agency-orchestrator
+  - specialized-mcp-builder
+  - specialized-document-generator
+  - specialized-workflow-architect
+  - specialized-salesforce-architect
+  - specialized-customer-service
+  - specialized-healthcare-customer-service
+  - specialized-legal-client-intake
+  - specialized-legal-document-review
+  - specialized-legal-billing-time-tracking
+  - specialized-loan-officer-assistant
+  - specialized-real-estate-buyer-seller
+  - specialized-retail-customer-returns
+  - specialized-hr-onboarding
+  - specialized-hospitality-guest-services
+  - specialized-blockchain-security-auditor
+  - specialized-compliance-auditor
+  - specialized-model-qa-specialist
+teams:
+  - specialized-agency
+

@@ -1,0 +1,29 @@
+id: full-stack-agency
+name: Full Stack Agency
+description: 从产品想法到 UX、前后端方案、安全和交付计划的完整小型 agency。
+use_when:
+  - 复杂新产品规划
+  - 从 0 到 1 功能设计
+  - 需要产品、设计、工程、质量协作
+members:
+  lead: agency-orchestrator
+  contributors:
+    - product-manager
+    - ux-researcher
+    - ui-designer
+    - architect
+    - backend-architect
+    - frontend-developer
+    - security-engineer
+    - qa-reviewer
+    - project-manager
+default_workflows:
+  - full-stack-product-pipeline
+deliverables:
+  - 任务路由
+  - 产品规格
+  - UX/UI 方案
+  - 技术方案
+  - 安全与测试计划
+  - 交付路线图
+

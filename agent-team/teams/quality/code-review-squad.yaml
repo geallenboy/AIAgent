@@ -1,0 +1,23 @@
+id: code-review-squad
+name: 代码审查小队
+description: 用于 PR、代码变更、架构变更和上线前风险审查。
+use_when:
+  - PR 审查
+  - 安全审查
+  - 性能审查
+  - 测试补齐
+members:
+  lead: qa-reviewer
+  contributors:
+    - architect
+    - engineer
+    - project-manager
+default_workflows:
+  - pr-code-review
+deliverables:
+  - 审查发现
+  - 风险等级
+  - 测试缺口
+  - 修复建议
+  - 发布建议
+
