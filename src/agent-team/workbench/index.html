@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent Team Workbench</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="mark">AT</div>
+          <div>
+            <strong>Agent Team</strong>
+            <span>Local scheduler</span>
+          </div>
+        </div>
+        <nav>
+          <button class="nav-button active" data-view="launcher">Workflow Launcher</button>
+          <button class="nav-button" data-view="runs">Runs</button>
+          <button class="nav-button" data-view="approvals">Approvals</button>
+          <button class="nav-button" data-view="registry">Registry</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h1>Agent Team Workbench</h1>
+            <p>本地调度、任务状态、审批和执行日志</p>
+          </div>
+          <button id="refresh-button" class="primary">刷新</button>
+        </header>
+
+        <section class="summary" id="summary"></section>
+
+        <section class="layout">
+          <div class="main-panel">
+            <section id="launcher-view" class="view active">
+              <div class="section-head">
+                <h2>Workflow Launcher</h2>
+                <span>选择工作流并填写输入</span>
+              </div>
+              <form id="run-form" class="run-form">
+                <label>
+                  Workflow
+                  <select id="workflow-select"></select>
+                </label>
+                <label>
+                  Inputs
+                  <textarea id="inputs-text" rows="8" placeholder='{"idea":"规划一个 AI 记账工具 MVP"}'></textarea>
+                </label>
+                <button class="primary" type="submit">创建 Run</button>
+              </form>
+            </section>
+
+            <section id="runs-view" class="view">
+              <div class="section-head">
+                <h2>Runs</h2>
+                <span>运行看板和 DAG 状态</span>
+              </div>
+              <div id="run-list" class="run-list"></div>
+              <div id="dag" class="dag"></div>
+            </section>
+
+            <section id="approvals-view" class="view">
+              <div class="section-head">
+                <h2>Approvals</h2>
+                <span>高风险能力审批队列</span>
+              </div>
+              <div id="approval-list" class="approval-list"></div>
+            </section>
+
+            <section id="registry-view" class="view">
+              <div class="section-head">
+                <h2>Registry Browser</h2>
+                <span>Employees、Skills、Teams、Workflows</span>
+              </div>
+              <div id="registry-browser" class="registry-grid"></div>
+            </section>
+          </div>
+
+          <aside class="inspector">
+            <h2>Step Inspector</h2>
+            <div id="step-detail" class="step-detail empty">选择一个 step 查看 prompt、artifact 和事件。</div>
+            <h2>Event Log</h2>
+            <div id="event-log" class="event-log"></div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
+

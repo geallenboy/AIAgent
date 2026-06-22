@@ -13,6 +13,7 @@ members:
   lead: agency-orchestrator
   contributors:
     - specialized-workflow-architect
+    - open-source-project-analyst
     - specialized-mcp-builder
     - specialized-document-generator
     - specialized-compliance-auditor
@@ -22,12 +23,13 @@ members:
     - legal-compliance-checker
 default_workflows:
   - specialized-domain-intake
+  - open-source-project-analysis
   - mcp-workflow-design
   - model-qa-review
 deliverables:
   - 专业 intake
+  - 开源项目拆解报告
   - 工作流和工具方案
   - 文档草案或审查
   - 合规和风险提示
   - 模型 QA 报告
-

@@ -7,10 +7,10 @@
 | 类型 | 数量 |
 | --- | ---: |
 | Divisions | 15 |
-| Employees | 129 |
-| Skills | 61 |
+| Employees | 130 |
+| Skills | 62 |
 | Teams | 18 |
-| Workflows | 27 |
+| Workflows | 28 |
 
 ## 1. 如何理解这个系统
 
@@ -580,10 +580,10 @@ npm test
 
 ```text
 Agent Team validation passed.
-Employees: 129
-Skills: 61
+Employees: 130
+Skills: 62
 Teams: 18
-Workflows: 27
+Workflows: 28
 Divisions: 15
 ```
 
@@ -618,4 +618,3 @@ Divisions: 15
 请用 Evidence Quality Agency 或 Testing Agency 复核上面的方案。
 重点找：未验证假设、范围过大、测试缺口、安全/隐私/合规风险。
 ```
-

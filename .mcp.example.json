@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "agent-team": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["src/agent-team/cli.js", "mcp"],
+      "cwd": "/Users/gegarron/Documents/AI Agent"
+    }
+  }
+}
+

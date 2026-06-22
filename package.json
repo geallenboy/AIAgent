@@ -5,11 +5,18 @@
   "description": "Local Codex-first AI employee/team/workflow definitions.",
   "type": "module",
   "scripts": {
-    "test": "node scripts/validate-agent-team.mjs",
-    "validate": "node scripts/validate-agent-team.mjs"
+    "test": "node --test test/*.test.mjs",
+    "validate": "node src/agent-team/cli.js validate",
+    "legacy:validate": "node scripts/validate-agent-team.mjs",
+    "mcp": "node src/agent-team/cli.js mcp"
+  },
+  "bin": {
+    "agent-team": "src/agent-team/cli.js"
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
   }
 }
-

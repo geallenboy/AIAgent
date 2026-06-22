@@ -1,0 +1,11 @@
+# Copy this snippet into a trusted project's .codex/config.toml or your ~/.codex/config.toml.
+# Restart Codex after changing MCP configuration.
+
+[mcp_servers.agent_team]
+command = "node"
+args = ["src/agent-team/cli.js", "mcp"]
+cwd = "/Users/gegarron/Documents/AI Agent"
+startup_timeout_sec = 10
+tool_timeout_sec = 60
+default_tools_approval_mode = "prompt"
+

@@ -1,0 +1,68 @@
+name: open-source-project-analysis
+description: 分析 GitHub 开源项目、传播图片和用户目标，输出项目理解、技术工作流、解决问题、效果评估和下一步行动。
+team: specialized-agency
+inputs:
+  - name: repo_url
+    required: true
+  - name: reference_image
+    required: false
+  - name: user_goal
+    required: false
+  - name: target_scenario
+    required: false
+  - name: constraints
+    required: false
+steps:
+  - id: evidence_scan
+    employee: evidence-collector
+    skill: evidence-qa
+    task: "收集仓库、截图和用户目标中的已验证事实、未验证声明和需要联网核对的信息：{{repo_url}}\n截图或参考材料：{{reference_image}}\n用户目标：{{user_goal}}\n目标场景：{{target_scenario}}\n约束：{{constraints}}"
+    output: evidence_scan
+  - id: repo_story_analysis
+    employee: open-source-project-analyst
+    skill: open-source-project-analysis
+    depends_on:
+      - evidence_scan
+    task: "基于证据扫描，分析 GitHub 项目事实、传播图片叙事、项目如何理解、解决什么问题、能达到什么效果：{{evidence_scan}}\n仓库：{{repo_url}}\n截图或参考材料：{{reference_image}}"
+    output: repo_story_analysis
+  - id: ai_pipeline_review
+    employee: ai-engineer
+    skill: architecture-review
+    depends_on:
+      - repo_story_analysis
+    task: "从 AI 集成角度拆解项目的数据流、模型调用、外部依赖、失败处理、评估指标、成本和隐私风险：{{repo_story_analysis}}"
+    output: ai_pipeline_review
+  - id: content_experiment_review
+    employee: marketing-video-optimization-specialist
+    skill: platform-content-strategy
+    depends_on:
+      - repo_story_analysis
+    task: "如果项目可用于内容生产，设计批量测试机制、选题验证、标题/封面/完播指标和平台分发复用建议；如果不适用，说明原因：{{repo_story_analysis}}\n目标场景：{{target_scenario}}"
+    output: content_experiment_review
+  - id: tool_fit_review
+    employee: testing-tool-evaluator
+    skill: tool-evaluation
+    depends_on:
+      - repo_story_analysis
+      - ai_pipeline_review
+      - content_experiment_review
+    task: "评估该开源项目是否适合学习、试用、复刻或进入生产流程，说明采用条件、放弃条件、迁移成本和退出路径：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{content_experiment_review}}"
+    output: tool_fit_review
+  - id: reality_summary
+    employee: reality-checker
+    skill: evidence-qa
+    depends_on:
+      - tool_fit_review
+    task: "挑战过度乐观假设，区分事实、推断和营销表达，输出风险、疑问和最小下一步：{{tool_fit_review}}"
+    output: reality_summary
+  - id: final_report
+    employee: open-source-project-analyst
+    skill: open-source-project-analysis
+    depends_on:
+      - repo_story_analysis
+      - ai_pipeline_review
+      - content_experiment_review
+      - tool_fit_review
+      - reality_summary
+    task: "汇总输出最终中文报告，必须包含：背景理解、分工结果、决策建议、风险/疑问、下一步行动。报告要回答：如何理解这个项目、它解决什么问题、达到什么效果。输入：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{content_experiment_review}}\n{{tool_fit_review}}\n{{reality_summary}}"
+    output: final_report
