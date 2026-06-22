@@ -1,14 +1,7 @@
 id: product
 name: Product Division
-description: Product management, sprint prioritization, trend research, feedback synthesis, and behavioral product design.
+description: Developer-facing product scoping for MVP and feature-to-task planning.
 employees:
   - product-manager
-  - product-sprint-prioritizer
-  - product-trend-researcher
-  - product-feedback-synthesizer
-  - product-behavioral-nudge-engine
 teams:
   - product-development-squad
-  - full-stack-agency
-  - product-strategy-agency
-

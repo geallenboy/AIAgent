@@ -1,35 +1,28 @@
 id: specialized-agency
-name: Specialized Agency
-description: 跨领域专业任务、MCP/tooling、文档、合规审计、专业 intake、CRM、工作流和模型 QA 团队。
+name: Developer Tooling Agency
+description: 面向开发人员的 MCP/tooling、开源项目分析、合规复核和模型/agent QA 团队。
 use_when:
-  - 专业领域 intake
-  - 法律/医疗/金融/房地产/HR/客服流程
   - MCP 或工具设计
-  - 文档生成和审查
-  - 合规审计
+  - 开源项目技术分析
+  - 开发工作流设计
+  - 开发者工具合规复核
   - 模型 QA
-  - 复杂跨系统工作流
+  - 复杂跨系统开发工作流
 members:
   lead: agency-orchestrator
   contributors:
     - specialized-workflow-architect
     - open-source-project-analyst
     - specialized-mcp-builder
-    - specialized-document-generator
     - specialized-compliance-auditor
     - specialized-model-qa-specialist
-    - specialized-customer-service
-    - specialized-salesforce-architect
     - legal-compliance-checker
 default_workflows:
-  - specialized-domain-intake
   - open-source-project-analysis
   - mcp-workflow-design
   - model-qa-review
 deliverables:
-  - 专业 intake
-  - 开源项目拆解报告
+  - 开源项目技术拆解报告
   - 工作流和工具方案
-  - 文档草案或审查
-  - 合规和风险提示
-  - 模型 QA 报告
+  - 开发者合规和安全风险提示
+  - 模型/agent QA 报告

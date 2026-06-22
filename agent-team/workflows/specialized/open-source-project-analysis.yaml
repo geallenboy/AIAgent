@@ -1,11 +1,9 @@
 name: open-source-project-analysis
-description: 分析 GitHub 开源项目、传播图片和用户目标，输出项目理解、技术工作流、解决问题、效果评估和下一步行动。
+description: 分析 GitHub 开源项目的技术定位、架构、AI/数据流、采用风险和开发者下一步。
 team: specialized-agency
 inputs:
   - name: repo_url
     required: true
-  - name: reference_image
-    required: false
   - name: user_goal
     required: false
   - name: target_scenario
@@ -16,14 +14,14 @@ steps:
   - id: evidence_scan
     employee: evidence-collector
     skill: evidence-qa
-    task: "收集仓库、截图和用户目标中的已验证事实、未验证声明和需要联网核对的信息：{{repo_url}}\n截图或参考材料：{{reference_image}}\n用户目标：{{user_goal}}\n目标场景：{{target_scenario}}\n约束：{{constraints}}"
+    task: "收集仓库、用户目标、目标场景和约束中的已验证事实、未验证声明和需要进一步核对的信息：{{repo_url}}\n用户目标：{{user_goal}}\n目标场景：{{target_scenario}}\n约束：{{constraints}}"
     output: evidence_scan
   - id: repo_story_analysis
     employee: open-source-project-analyst
     skill: open-source-project-analysis
     depends_on:
       - evidence_scan
-    task: "基于证据扫描，分析 GitHub 项目事实、传播图片叙事、项目如何理解、解决什么问题、能达到什么效果：{{evidence_scan}}\n仓库：{{repo_url}}\n截图或参考材料：{{reference_image}}"
+    task: "基于证据扫描，分析 GitHub 项目的技术定位、核心能力、解决的问题、主要使用路径和开发者价值：{{evidence_scan}}\n仓库：{{repo_url}}"
     output: repo_story_analysis
   - id: ai_pipeline_review
     employee: ai-engineer
@@ -32,21 +30,22 @@ steps:
       - repo_story_analysis
     task: "从 AI 集成角度拆解项目的数据流、模型调用、外部依赖、失败处理、评估指标、成本和隐私风险：{{repo_story_analysis}}"
     output: ai_pipeline_review
-  - id: content_experiment_review
-    employee: marketing-video-optimization-specialist
-    skill: platform-content-strategy
+  - id: integration_review
+    employee: senior-developer
+    skill: implementation-planning
     depends_on:
       - repo_story_analysis
-    task: "如果项目可用于内容生产，设计批量测试机制、选题验证、标题/封面/完播指标和平台分发复用建议；如果不适用，说明原因：{{repo_story_analysis}}\n目标场景：{{target_scenario}}"
-    output: content_experiment_review
+      - ai_pipeline_review
+    task: "从开发集成角度评估该项目的安装方式、关键依赖、接口边界、运行成本、迁移成本、维护风险和最小试用路径：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n目标场景：{{target_scenario}}"
+    output: integration_review
   - id: tool_fit_review
     employee: testing-tool-evaluator
     skill: tool-evaluation
     depends_on:
       - repo_story_analysis
       - ai_pipeline_review
-      - content_experiment_review
-    task: "评估该开源项目是否适合学习、试用、复刻或进入生产流程，说明采用条件、放弃条件、迁移成本和退出路径：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{content_experiment_review}}"
+      - integration_review
+    task: "评估该开源项目是否适合学习、试用、复刻或进入生产开发流程，说明采用条件、放弃条件、迁移成本和退出路径：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{integration_review}}"
     output: tool_fit_review
   - id: reality_summary
     employee: reality-checker
@@ -61,8 +60,8 @@ steps:
     depends_on:
       - repo_story_analysis
       - ai_pipeline_review
-      - content_experiment_review
+      - integration_review
       - tool_fit_review
       - reality_summary
-    task: "汇总输出最终中文报告，必须包含：背景理解、分工结果、决策建议、风险/疑问、下一步行动。报告要回答：如何理解这个项目、它解决什么问题、达到什么效果。输入：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{content_experiment_review}}\n{{tool_fit_review}}\n{{reality_summary}}"
+    task: "汇总输出最终中文报告，必须包含：背景理解、开发分工、决策建议、风险/疑问、下一步行动。报告要回答：如何理解这个项目、它解决什么问题、开发者能达到什么效果、最小技术验证路径是什么。输入：{{repo_story_analysis}}\n{{ai_pipeline_review}}\n{{integration_review}}\n{{tool_fit_review}}\n{{reality_summary}}"
     output: final_report

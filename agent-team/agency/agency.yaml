@@ -1,6 +1,6 @@
-id: codex-first-agency
-name: Codex First Agency
-description: A local AI agency roster for routing user requests to specialized Codex employees, teams, and workflows.
+id: developer-agent
+name: Developer Agent
+description: A local Codex-first developer agent for planning, implementing, reviewing, testing, and preparing software changes.
 inspired_by:
   - https://github.com/msitarzewski/agency-agents
 principles:
@@ -10,25 +10,16 @@ principles:
   - Use evidence and validation before claiming completion.
   - Record assumptions when user intent is incomplete.
 divisions:
-  - strategy
   - product
-  - project-management
   - engineering
-  - design
-  - growth
-  - marketing
-  - paid-media
   - testing
   - quality
-  - finance
-  - support
-  - spatial-computing
   - specialized
-  - operations
+  - project-management
 default_orchestrator: agency-orchestrator
 default_output:
   - 背景理解
-  - 分工结果
+  - 开发分工
   - 决策建议
   - 风险/疑问
   - 下一步行动

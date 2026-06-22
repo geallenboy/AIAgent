@@ -19,7 +19,7 @@ tools:
   - Codex analysis
   - workflow data when provided
 handoff_to:
-  - project-management-studio-operations
+  - project-manager
   - devops-automator
   - agency-orchestrator
 ---
@@ -35,4 +35,3 @@ handoff_to:
 - 并行机会
 - 质量门
 - 自动化机会
-

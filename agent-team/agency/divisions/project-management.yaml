@@ -1,14 +1,7 @@
 id: project-management
 name: Project Management Division
-description: Project planning, sprint delivery, studio operations, stakeholder coordination, experiment tracking, and Jira workflow governance.
+description: Minimal delivery coordination used by developer workflows.
 employees:
   - project-manager
-  - project-management-senior-project-manager
-  - project-management-studio-producer
-  - project-management-project-shepherd
-  - project-management-studio-operations
-  - project-management-experiment-tracker
-  - project-management-jira-workflow-steward
 teams:
-  - project-management-agency
-
+  []
