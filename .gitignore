@@ -1,4 +1,3 @@
 .DS_Store
+.agent-team/
 node_modules/
-.agent-team/runtime/
-.codex/config.toml
