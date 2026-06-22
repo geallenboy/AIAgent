@@ -2,7 +2,7 @@
 
 This repository is organized by agent scenarios.
 
-- `developer-agent/`: Codex-first developer agent team system.
-- `agent-team/`: Standalone Agent Team scenario, kept separate for future expansion.
+- `agent-team/`: Complete Agent Team project, including the full runtime, registry, docs, and tests.
+- `developer-agent/`: Empty placeholder for a separate future developer-agent scenario.
 
 Each top-level directory should stay self-contained so different agent scenarios do not mix code, docs, or runtime assumptions.
